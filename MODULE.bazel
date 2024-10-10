@@ -23,11 +23,11 @@ bazel_dep(name = "bazel_skylib", version = "1.6.1")
 bazel_dep(name = "abseil-cpp", version = "20240116.0", repo_name = "absl")
 bazel_dep(name = "nlohmann_json", version = "3.11.3", repo_name = "json")
 bazel_dep(name = "fmt", version = "10.0.0")
-bazel_dep(name = "rules_kotlin", version = "1.9.4-codeql.1")
+bazel_dep(name = "rules_kotlin", version = "2.0.0-codeql.1")
 bazel_dep(name = "gazelle", version = "0.38.0")
 bazel_dep(name = "rules_dotnet", version = "0.15.1")
 bazel_dep(name = "googletest", version = "1.14.0.bcr.1")
-bazel_dep(name = "rules_rust", version = "0.50.0")
+bazel_dep(name = "rules_rust", version = "0.52.2")
 
 bazel_dep(name = "buildifier_prebuilt", version = "6.4.0", dev_dependency = True)
 
@@ -60,6 +60,8 @@ r.from_cargo(
         "//:Cargo.toml",
         "//ruby/extractor:Cargo.toml",
         "//rust/extractor:Cargo.toml",
+        "//rust/extractor/macros:Cargo.toml",
+        "//rust/ast-generator:Cargo.toml",
         "//shared/tree-sitter-extractor:Cargo.toml",
     ],
 )
@@ -126,6 +128,7 @@ use_repo(
     "kotlin-compiler-1.9.20-Beta",
     "kotlin-compiler-2.0.0-RC1",
     "kotlin-compiler-2.0.20-Beta2",
+    "kotlin-compiler-2.1.0-Beta1",
     "kotlin-compiler-embeddable-1.5.0",
     "kotlin-compiler-embeddable-1.5.10",
     "kotlin-compiler-embeddable-1.5.20",
@@ -139,6 +142,7 @@ use_repo(
     "kotlin-compiler-embeddable-1.9.20-Beta",
     "kotlin-compiler-embeddable-2.0.0-RC1",
     "kotlin-compiler-embeddable-2.0.20-Beta2",
+    "kotlin-compiler-embeddable-2.1.0-Beta1",
     "kotlin-stdlib-1.5.0",
     "kotlin-stdlib-1.5.10",
     "kotlin-stdlib-1.5.20",
@@ -152,10 +156,11 @@ use_repo(
     "kotlin-stdlib-1.9.20-Beta",
     "kotlin-stdlib-2.0.0-RC1",
     "kotlin-stdlib-2.0.20-Beta2",
+    "kotlin-stdlib-2.1.0-Beta1",
 )
 
 go_sdk = use_extension("@rules_go//go:extensions.bzl", "go_sdk")
-go_sdk.download(version = "1.22.2")
+go_sdk.download(version = "1.23.1")
 
 go_deps = use_extension("@gazelle//:extensions.bzl", "go_deps")
 go_deps.from_file(go_mod = "//go/extractor:go.mod")
